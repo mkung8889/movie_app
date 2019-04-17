@@ -54,7 +54,7 @@ popularity_recomm.print_rows(num_rows=25)
 
 #Lets create a model based on item similarity as follows:
 #Train Model
-item_sim_model = graphlab.item_similarity_recommender.create(train_data, user_id='user_id', item_id='movie_id', target='rating', similarity_type='pearson')
+item_sim_model = graphlab.item_similarity_recommender.create(train_data, user_id='user_id', item_id='movie_id', target='rating', similarity_type='cosine')
 
 #Make Recommendations:
 item_sim_recomm = item_sim_model.recommend(users=range(1,6),k=5)

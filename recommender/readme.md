@@ -1,6 +1,6 @@
 inspired from: https://www.analyticsvidhya.com/blog/2016/06/quick-guide-build-recommendation-engine-python/
 
-The job.py python script covers:
+The Jupyter Notebook  covers:
     a) Simple Popularity Model
     b) Collaborative Filtering Model (using Cosine Similarity)
     c) Evaluates the above Recommendation Engines (in terms of Recall and Precision)
@@ -24,21 +24,4 @@ activate gl-env
 
 3) # Install your licensed copy of GraphLab Create
 pip install --upgrade --no-cache-dir https://get.graphlab.com/GraphLab-Create/2.1/yourname@youremail.com/yourkey/GraphLab-Create-License.tar.gz
-
-To run the python script 
-1) fire up the shell
-2) execfile('job.py')
-
-
-
-
-
-
-
-
-
-
-
-
-
 
