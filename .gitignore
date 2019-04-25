@@ -1,8 +1,8 @@
-.DS_Store
- matrix_factorization/.DS_Store
- matrix_factorization/.ipynb_checkpoints/Team Data For Predictions-checkpoint.ipynb
- matrix_factorization/.ipynb_checkpoints/matrix_factorization-checkpoint.ipynb
- matrix_factorization/.ipynb_checkpoints/predicted_ratings-checkpoint.ipynb
- movies/__pycache__/movie_prediction.cpython-36.pyc
- matrix_factorization/.ipynb_checkpoints/Untitled-checkpoint.ipynb
-config.py
+.DS_Store,
+ matrix_factorization/.DS_Store,
+ matrix_factorization/.ipynb_checkpoints/Team Data For Predictions-checkpoint.ipynb,
+ matrix_factorization/.ipynb_checkpoints/matrix_factorization-checkpoint.ipynb,
+ matrix_factorization/.ipynb_checkpoints/predicted_ratings-checkpoint.ipynb,
+ movies/__pycache__/movie_prediction.cpython-36.pyc,
+ matrix_factorization/.ipynb_checkpoints/Untitled-checkpoint.ipynb,
+config.py,
