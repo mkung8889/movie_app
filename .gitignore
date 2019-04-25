@@ -5,3 +5,4 @@
  matrix_factorization/.ipynb_checkpoints/predicted_ratings-checkpoint.ipynb
  movies/__pycache__/movie_prediction.cpython-36.pyc
  matrix_factorization/.ipynb_checkpoints/Untitled-checkpoint.ipynb
+config.py
