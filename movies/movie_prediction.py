@@ -3,7 +3,9 @@ import numpy as np
 import json
 import requests
 
-from config import api_key
+# from config import api_key
+import config
+
 
 #Reading users file:
 u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code']
@@ -68,7 +70,8 @@ def top5rec(user_id):
             split_title = title.split(", ")
             title = split_title[1] + " " + split_title[0]
         year = movie["release_date"].split("-")[2]
-        response = requests.get(url + title + api_key +"&y="+year)
+        # response = requests.get(url + title + api_key +"&y="+year)
+        response = requests.get(url + title + config.api_key +"&y="+year)
         # print(response.url)
         data = response.json()
         movie_data.append(data)
