@@ -17,8 +17,10 @@ def home():
         user_id = request.form["userId"]
         user_data = mp.user_data(user_id)
         user_rec = mp.top5rec(user_id)
-        
-    return render_template("index.html")
+        return render_template("index.html", user_data=user_data, user_rec=user_rec)   
+    else:  
+        return render_template("index.html",user_data =1)
+    return render_template("index.html", user_data =1)
 
 @app.route("/movies")
 def movies():

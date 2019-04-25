@@ -1,5 +1,9 @@
 import pandas as pd
 import numpy as np
+import json
+import requests
+
+from config import api_key
 
 #Reading users file:
 u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code']
@@ -43,7 +47,6 @@ def top5rec(user_id):
     for movie in rated_movies:
         if movie-1 in orderedRecs:
             orderedRecs.remove(movie)
-    print(len(orderedRecs))
     top5 = orderedRecs[0:5]
     rec_df = pd.DataFrame()
     for movie in top5:
@@ -57,7 +60,19 @@ def top5rec(user_id):
             "IMDb_URL": row[4]
         }
         movie_list.append(movie_data)
-    return(movie_list)
+    url = "http://www.omdbapi.com/?t="
+    movie_data = []
+    for movie in movie_list:
+        title = movie["movie_title"][:-7]
+        if ", " in title:
+            split_title = title.split(", ")
+            title = split_title[1] + " " + split_title[0]
+        year = movie["release_date"].split("-")[2]
+        response = requests.get(url + title + api_key +"&y="+year)
+        # print(response.url)
+        data = response.json()
+        movie_data.append(data)
+    return(movie_data)
 
 ######user data
 def user_data(user_id):
@@ -65,10 +80,11 @@ def user_data(user_id):
     ratings_count = ratings.groupby("user_id").count()["movie_id"]
     user_data["#_movies_rated"] = ratings_count
     user = {
-        "user_id": f"{users.iloc[int(user_id)-1].values[0]}",
-        "age": f"{users.iloc[int(user_id)-1].values[1]}",
-        "sex": f"{users.iloc[int(user_id)-1].values[2]}",
-        "occupation": f"{users.iloc[int(user_id)-1].values[3]}",
-        "#_movie_rated": f"{users.iloc[int(user_id)-1].values[4]}"
+        "user_id": user_id,
+        "age": f"{user_data.iloc[int(user_id)-1].values[0]}",
+        "sex": f"{user_data.iloc[int(user_id)-1].values[1]}",
+        "occupation": f"{user_data.iloc[int(user_id)-1].values[2]}",
+        "zipcode": f"{user_data.iloc[int(user_id)-1].values[3]}",
+        "num_movies_rated": f"{user_data.iloc[int(user_id)-1].values[4]}"
     }
     return(user)
