@@ -22,8 +22,9 @@ https://grouplens.org/datasets/movielens/20m/
     * GraphLab Item Similarity
     * Turicreate Factorization
     * Turicreate Popularity
-* Deep Learning
 * Matrix Factorization
+* Deep Learning
+
 
 ### Tools:
 * GraphLab: https://pypi.org/project/GraphLab-Create/
@@ -35,5 +36,7 @@ https://grouplens.org/datasets/movielens/20m/
 * Tableau: https://www.tableau.com/
 * Seaborn: https://seaborn.pydata.org/
 * Flask: http://flask.pocoo.org/
+* TensorFlow: https://www.tensorflow.org/
+* Keras: https://keras.io/
 * HTML, CSS
 
