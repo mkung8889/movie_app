@@ -1,6 +1,9 @@
 # Cinematrix 
 by Michael Kung, Pablo Maceda, Dexter D'Cruz, Kerry Kovacik & Kristen Cannon
 
+### Cinematrix App:
+https://movie-suggestion-app.herokuapp.com/
+
 ### Sources:
 grouplens MovieLens data sets
 https://grouplens.org/datasets/movielens/
