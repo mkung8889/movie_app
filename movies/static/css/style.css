@@ -2,6 +2,7 @@
     min-height : 300px;
     max-height : 300px;
     width : 100%;
+<<<<<<< HEAD
   } */
 
 /* #carousel {
@@ -41,3 +42,10 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+=======
+  }
+
+#carousel {
+    height:300px;;
+} */
+>>>>>>> master

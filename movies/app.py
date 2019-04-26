@@ -4,8 +4,6 @@ from flask import (
     jsonify,
     request,
     redirect)
-import pandas as pd
-
 import movies.movie_prediction as mp
 
 app = Flask(__name__)
@@ -27,6 +25,7 @@ def movies():
     i_cols = ['movie id', 'movie title' ,'release date','video release date', 'IMDb URL', 'unknown', 'Action', 'Adventure',
     'Animation', 'Children\'s', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy',
     'Film-Noir', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western']
+
 
     items = pd.read_csv("matrix_factorization/data/ml-100k/u.item", sep='|', names=i_cols,
     encoding='latin-1')
