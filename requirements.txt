@@ -2,10 +2,7 @@ certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
 Flask==1.0.2
-<<<<<<< HEAD
-=======
 gunicorn==19.9.0
->>>>>>> master
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.10.1
@@ -18,7 +15,4 @@ requests==2.21.0
 six==1.12.0
 urllib3==1.24.2
 Werkzeug==0.15.2
-<<<<<<< HEAD
-=======
 wincertstore==0.2
->>>>>>> master
