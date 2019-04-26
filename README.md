@@ -1,7 +1,7 @@
 # Cinematrix 
 by Michael Kung, Pablo Maceda, Dexter D'Cruz, Kerry Kovacik & Kristen Cannon
 
-###Sources:
+### Sources:
 grouplens MovieLens data sets
 https://grouplens.org/datasets/movielens/
 
@@ -14,7 +14,7 @@ https://grouplens.org/datasets/movielens/100k/
 * Used the 20M 2018 data set for the deep learning model.
 https://grouplens.org/datasets/movielens/20m/
 
-###Models explored:
+### Models explored:
 * Decision Tree
 * Random Forest
 * Recommender
@@ -25,7 +25,7 @@ https://grouplens.org/datasets/movielens/20m/
 * Deep Learning
 * Matrix Factorization
 
-###Tools:
+### Tools:
 * GraphLab: https://pypi.org/project/GraphLab-Create/
 * scikit-learn: https://scikit-learn.org/stable/
 * Turicreate: https://github.com/apple/turicreate
