@@ -1,0 +1,43 @@
+/* .carousel-inner > .item >img{
+    min-height : 300px;
+    max-height : 300px;
+    width : 100%;
+  } */
+
+/* #carousel {
+    height:100px;
+} */
+
+img {
+  height: auto;
+}
+
+.block{
+  background-color: white;
+  padding: 25px;
+  margin: 20px;
+}
+.block1{
+  background-color: black;
+  padding: 25px;
+  margin: 20px;
+}
+
+.carousel-caption {
+  background-color: black;
+  opacity: .75;
+}
+
+#main_body {
+  background-color: grey;
+}
+
+
+#header {
+  color: white;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -6,7 +6,7 @@ from flask import (
     redirect)
 import pandas as pd
 
-import movie_prediction as mp
+import movies.movie_prediction as mp
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def movies():
     'Animation', 'Children\'s', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy',
     'Film-Noir', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western']
 
-    items = pd.read_csv("./../matrix_factorization/data/ml-100k/u.item", sep='|', names=i_cols,
+    items = pd.read_csv("matrix_factorization/data/ml-100k/u.item", sep='|', names=i_cols,
     encoding='latin-1')
 
     items_dict = []
