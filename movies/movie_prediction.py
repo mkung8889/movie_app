@@ -54,7 +54,7 @@ def top5rec(user_id):
         year = movie["release_date"].split("-")[2]
         response = requests.get(url + title + config.api_key +"&y="+year)
         data = response.json()
-        if "Error" not in data.keys():
+        if "Error" not in data.keys() and data["Poster"] != "N/A":
             movie_data.append(data)
     return(movie_data[0:5])
 

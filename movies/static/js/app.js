@@ -1,6 +1,18 @@
-var userId = d3.select("userId").txt()
-console.log(`user id: ${userId}`)
+var button = d3.select("#filter-btn");
+var error = d3.select("error");
 
-d3.json('/movies/recommended/{user_id}').then(userId=> {
-    var movie_recs = d3.select("movie_rec").append()
+button.on( "click", function(){
+    var userId = d3.select("#userId").property("value");
+    console.log(userId)
+    if (!(userId in Range(1,948))) {
+        console.log("invalid User ID")
+        d3.event.preventDefault();
+        var errorDiv = error.append("div")
+                            .attr("class","alert alert-danger alert-dismissible fade in");
+    }
+    console.log("error bar")
 })
+{/* <div class="alert alert-danger alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+  </div> */}
