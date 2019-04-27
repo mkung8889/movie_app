@@ -28,16 +28,20 @@ img {
   opacity: .75;
 }
 
-#main_body {
-  background-color: grey;
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
-
 
 #header {
   color: white;
 }
 
-.center {
-  margin-left: auto;
-  margin-right: auto;
+#main_body {
+  background-color: grey;
 }
+
+#app_title {
+  font-size: 500%;
+}
+

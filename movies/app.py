@@ -4,21 +4,36 @@ from flask import (
     jsonify,
     request,
     redirect)
+from random import *
+import pandas as pd
 import movies.movie_prediction as mp
+
+u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code', '#_ratings', 'RMSE']
+users = pd.read_csv('matrix_factorization/user_data.csv').drop("Unnamed: 0",axis=1)
+# print(list(users["user_id"].values))
 
 app = Flask(__name__)
 
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    if request.method == "POST":
-        user_id = request.form["userId"]
+    # u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code', '#_ratings', 'RMSE']
+    # users = pd.read_csv('matrix_factorization/user_data.csv').drop("Unnamed: 0",axis=1)
+    # print(list(users["user_id"].values))
+    if request.method == "GET":
+        user_id = randint(1,948)
         user_data = mp.user_data(user_id)
         user_rec = mp.top5rec(user_id)
-        return render_template("index.html", user_data=user_data, user_rec=user_rec)   
-    else:  
-        return render_template("index.html",user_data =1)
-    return render_template("index.html", user_data =1)
+        return render_template("index.html", user_data=user_data, user_rec=user_rec)
+
+    if request.method == "POST":
+        user_id = request.form["userId"]
+        if user_id in list(users["user_id"].values.astype(str)):
+            user_data = mp.user_data(user_id)
+            user_rec = mp.top5rec(user_id)
+            return render_template("index.html", user_data=user_data, user_rec=user_rec)
+        else:
+            return render_template("error.html")
 
 @app.route("/movies")
 def movies():

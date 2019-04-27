@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Movies App</title>
+    <title>Cinematrix</title>
 
-    <!-- Bootstrap -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
-          <h1>Movie Suggestion</h1> 
-          <p>We use Machine Learning to make movie suggestions based on users' favorite movies</p> 
+          <h1 id="app_title">Cinematrix</h1> 
+          <h5>Find your new favorite movie!</h5>
+          <p>We use Matrix Factorization to give you movie suggestions based on the movies you have rated.</p> 
         </div>
+    </div>
+    <div class="container" id="error">
+        
     </div>
     <div class="container" id="main_body">
         <div class="row">
@@ -27,18 +30,13 @@
                         <div class="form-group">
                             <label for="fav-movies">User ID:</label>
                             <input class="form-control" type="text" name ="userId" id="userId">
-                            <!-- <textarea class="form-control" rows="5" id="comment"></textarea> -->
-
                         </div>
-                    <button id="filter-btn" type="submit" class="btn btn-default">Submit</button>
+                    <button id="filter-btn" type="submit" class="btn btn-default btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 block">
-                {% if user_data == 1 %}
-                <!-- <h3>User Data:</h3> -->
-                {% else %}
                     <p><b>User ID:</b> {{ user_data.user_id }}</p>
                     <p><b>Age:</b> {{ user_data.age }}</p>
                     <p><b>Sex:</b> {{ user_data.sex }}</p>
@@ -46,7 +44,6 @@
                     <p><b>Zipcode:</b> {{ user_data.zipcode }}</p>
                     <p><b># of Movies Rated:</b> {{ user_data.num_movies_rated }}</p>
                     <p><b>RMSE:</b> {{ user_data.RMSE }}</p>
-                {% endif %}
                 </div>
             </div>
         </div> 
@@ -54,9 +51,6 @@
         <div class="col-md-1"></div>
     
         <div class="col-md-7 block1" id="movies">
-            {% if user_data == 1 %}
-            <h3>MOVIE DATA HERE</h3>
-            {% else %}
             <h3 id="header">5 Recommended Movies</h3>
             <div class="container" id="carousel">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -108,7 +102,6 @@
                     </a>
                 </div>
             </div>
-            {% endif %}
         
         </div>
         </div>
@@ -116,9 +109,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
+    <!-- {{ url_for('static', filename='css/style.css') }}" -->
 </body>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script> -->
 
-
-<!-- <script type="text/javascript" src="./../static/js/app.js"></script> -->
 </html>
