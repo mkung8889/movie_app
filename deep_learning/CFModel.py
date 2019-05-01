@@ -3,7 +3,7 @@
 # Keras uses TensorFlow tensor library as the backend system to do the heavy compiling
 
 import numpy as np
-from keras.layers import Embedding, Reshape, Merge
+from keras.layers import Embedding, Reshape, Merge, Dense
 from keras.models import Sequential
 
 class CFModel(Sequential):

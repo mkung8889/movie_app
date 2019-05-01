@@ -6,142 +6,22 @@ from flask import (
     redirect)
 import pandas as pd
 
-# import movie_prediction as mp
-import pandas as pd
-import numpy as np
-import json
-import requests
-
-#Reading users file:
-u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code']
-users = pd.read_csv('../matrix_factorization/data/ml-100k/includes_team_users.csv').drop("Unnamed: 0",axis=1)
-
-#Reading ratings file:
-r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
-ratings = pd.read_csv('../matrix_factorization/data/ml-100k/includes_team_ratings.csv').drop("Unnamed: 0",axis=1)
-
-#Reading items file:
-i_cols = ['movie id', 'movie title' ,'release date','video release date', 'IMDb URL', 'unknown', 'Action', 'Adventure',
-'Animation', 'Children\'s', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy',
-'Film-Noir', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western']
-items = pd.read_csv('../matrix_factorization/data/ml-100k/u.item', sep='|', names=i_cols,
-encoding='latin-1')
-
-#prediction matrix
-prediction_matrix = np.loadtxt("../matrix_factorization/team_prediction_matrix.txt")
-
-###### movie recommendations
-def top5rec(user_id):
-    user_id = int(user_id)
-    rated_movies = list(ratings.loc[ratings["user_id"] ==user_id,"movie_id"].values)
-    orderedRecs = list(np.argsort(-prediction_matrix[user_id - 1,]))
-    for movie in rated_movies:
-        if movie-1 in orderedRecs:
-            orderedRecs.remove(movie)
-    top5 = orderedRecs[0:5]
-    rec_df = pd.DataFrame()
-    for movie in top5:
-        rec_df = rec_df.append(items.loc[items["movie id"]==int(movie)+1])
-    movie_list = []
-    for i,row in enumerate(rec_df.values):
-        movie_data = {
-            "movie_id": row[0],
-            "movie_title": row[1],
-            "release_date": row[2],
-            "IMDb_URL": row[4]
-        }
-        movie_list.append(movie_data)
-    url = "http://www.omdbapi.com/?t="
-    movie_data = []
-    for movie in movie_list:
-        title = movie["movie_title"][:-7]
-        if ", " in title:
-            split_title = title.split(", ")
-            title = split_title[1] + " " + split_title[0]
-        year = movie["release_date"].split("-")[2]
-        # response = requests.get(url + title + api_key +"&y="+year)
-        response = requests.get(url + title + "&apikey=trilogy" +"&y="+year)
-        # print(response.url)
-        data = response.json()
-        movie_data.append(data)
-    return(movie_data)
-
-######user data
-def user_data(user_id):
-    user_data = users.set_index("user_id")
-    ratings_count = ratings.groupby("user_id").count()["movie_id"]
-    user_data["#_movies_rated"] = ratings_count
-    user = {
-        "user_id": user_id,
-        "age": f"{user_data.iloc[int(user_id)-1].values[0]}",
-        "sex": f"{user_data.iloc[int(user_id)-1].values[1]}",
-        "occupation": f"{user_data.iloc[int(user_id)-1].values[2]}",
-        "zipcode": f"{user_data.iloc[int(user_id)-1].values[3]}",
-        "num_movies_rated": f"{user_data.iloc[int(user_id)-1].values[4]}"
-    }
-    return(user)
+import movie_prediction as mp
+# import deep_learning_prediction as dlp
 
 app = Flask(__name__)
 
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    ###### movie recommendations
-    def top5rec(user_id):
-        user_id = int(user_id)
-        rated_movies = list(ratings.loc[ratings["user_id"] ==user_id,"movie_id"].values)
-        orderedRecs = list(np.argsort(-prediction_matrix[user_id - 1,]))
-        for movie in rated_movies:
-            if movie-1 in orderedRecs:
-                orderedRecs.remove(movie)
-        top5 = orderedRecs[0:5]
-        rec_df = pd.DataFrame()
-        for movie in top5:
-            rec_df = rec_df.append(items.loc[items["movie id"]==int(movie)+1])
-        movie_list = []
-        for i,row in enumerate(rec_df.values):
-            movie_data = {
-                "movie_id": row[0],
-                "movie_title": row[1],
-                "release_date": row[2],
-                "IMDb_URL": row[4]
-            }
-            movie_list.append(movie_data)
-        url = "http://www.omdbapi.com/?t="
-        movie_data = []
-        for movie in movie_list:
-            title = movie["movie_title"][:-7]
-            if ", " in title:
-                split_title = title.split(", ")
-                title = split_title[1] + " " + split_title[0]
-            year = movie["release_date"].split("-")[2]
-            # response = requests.get(url + title + api_key +"&y="+year)
-            response = requests.get(url + title + "&apikey=trilogy" +"&y="+year)
-            # print(response.url)
-            data = response.json()
-            movie_data.append(data)
-        return(movie_data)
-
-    ######user data
-    def user_data(user_id):
-        user_data = users.set_index("user_id")
-        ratings_count = ratings.groupby("user_id").count()["movie_id"]
-        user_data["#_movies_rated"] = ratings_count
-        user = {
-            "user_id": user_id,
-            "age": f"{user_data.iloc[int(user_id)-1].values[0]}",
-            "sex": f"{user_data.iloc[int(user_id)-1].values[1]}",
-            "occupation": f"{user_data.iloc[int(user_id)-1].values[2]}",
-            "zipcode": f"{user_data.iloc[int(user_id)-1].values[3]}",
-            "num_movies_rated": f"{user_data.iloc[int(user_id)-1].values[4]}"
-        }
-        return(user)
     if request.method == "POST":
         user_id = request.form["userId"]
-        user_data = user_data(user_id)
-        user_rec = top5rec(user_id)
-        return render_template("index.html", user_data=user_data, user_rec=user_rec)   
-    
+        user_data = mp.user_data(user_id)
+        user_rec = mp.top5rec(user_id)
+        # user_rec_deep = dlp.top5rec(user_id)
+        return render_template("index.html", user_data=user_data, user_rec=user_rec, user_rec_deep=user_rec_deep)   
+    else:  
+        return render_template("index.html",user_data =1)
     return render_template("index.html", user_data =1)
 
 @app.route("/movies")
@@ -171,10 +51,14 @@ def movie_rec(user_id):
 
     return jsonify(rec_movies)
 
+# @app.route("/movies/deep_recommended/<user_id>")
+# def deep_recommended(user_id):
+#     rec_movies = dlp.top5rec(user_id)
+#     return jsonify(rec_movies)
+
 @app.route("/user/<user_id>")
 def user_data(user_id):
     user_dict = mp.user_data(user_id)
-
     return jsonify(user_dict)
 
 

@@ -84,10 +84,10 @@ def user_data(user_id):
     user_data["#_movies_rated"] = ratings_count
     user = {
         "user_id": user_id,
-        "age": f"{user_data.iloc[int(user_id)-1].values[0]}",
-        "sex": f"{user_data.iloc[int(user_id)-1].values[1]}",
-        "occupation": f"{user_data.iloc[int(user_id)-1].values[2]}",
-        "zipcode": f"{user_data.iloc[int(user_id)-1].values[3]}",
-        "num_movies_rated": f"{user_data.iloc[int(user_id)-1].values[4]}"
+        "age": str(user_data.iloc[int(user_id)-1].values[0]),
+        "sex": str(user_data.iloc[int(user_id)-1].values[1]),
+        "occupation": str(user_data.iloc[int(user_id)-1].values[2]),
+        "zipcode": str(user_data.iloc[int(user_id)-1].values[3]),
+        "num_movies_rated": str(user_data.iloc[int(user_id)-1].values[4])
     }
     return(user)
