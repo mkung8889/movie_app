@@ -6,3 +6,4 @@
  movies/__pycache__/movie_prediction.cpython-36.pyc,
  matrix_factorization/.ipynb_checkpoints/Untitled-checkpoint.ipynb,
 config.py,
+ml-20m/ratings.csv
