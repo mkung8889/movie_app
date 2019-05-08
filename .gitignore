@@ -3,3 +3,4 @@ movies/config.py
 **/.ipynb_checkpoints
 **/__pycache__
 data/ml-20m
+data/ml-100k
