@@ -16,3 +16,12 @@ button.on( "click", function(){
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
   </div> */}
+
+
+
+d3.select("#btn").addEventListener("click", function(){
+  var elems = document.querySelectorAll("#exampleFormControlSelect1");
+  elems.forEach(function(el){
+    console.log(el.options[el.selectedIndex].text);
+  })
+});

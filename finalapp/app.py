@@ -17,6 +17,7 @@ app = Flask(__name__)
 app.config['SQL_ALCHEMY_DATABASE_URI'] = "sqlite://data/2018Movies.sqlite"
 
 
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     # # u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code', '#_ratings', 'RMSE']
