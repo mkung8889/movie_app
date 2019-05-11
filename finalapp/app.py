@@ -20,12 +20,12 @@ def home():
     # # u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code', '#_ratings', 'RMSE']
     # # users = pd.read_csv('matrix_factorization/user_data.csv').drop("Unnamed: 0",axis=1)
     # # print(list(users["user_id"].values))
-    # if request.method == "GET":
-    #     movies = mtr.moviestorate()
+    if request.method == "GET":
+        movies = mtr.moviestorate()
     #     user_id = randint(1,948)
     #     user_data = mp.user_data(user_id)
     #     user_rec = mp.top5rec(user_id)
-        return render_template("index.html")
+        return render_template("index.html", movies=movies)
 
     # if request.method == "POST":
     #     user_id = request.form["userId"]
@@ -59,8 +59,8 @@ def home():
 #     return jsonify(items_dict)
 
 @app.route("/movies/popular")
-def popular_moies():
-    pop = mtr.moviestorate
+def popular_movies():
+    movies = mtr.moviestorate()
 
     return jsonify(pop)
 
