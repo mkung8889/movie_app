@@ -64,7 +64,7 @@ def home():
 def popular_movies():
     movies = mtr.moviestorate()
 
-    return jsonify(pop)
+    return jsonify(movies)
 
 # @app.route("/user/<user_id>")
 # def user_data(user_id):
