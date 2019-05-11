@@ -17,11 +17,13 @@ button.on( "click", function(){
     <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
   </div> */}
 
+var submitButton = d3.select("#btn");
+var ratings = []
 
-
-d3.select("#btn").addEventListener("click", function(){
+submitButton.on("click", function(){
   var elems = document.querySelectorAll("#exampleFormControlSelect1");
   elems.forEach(function(el){
-    console.log(el.options[el.selectedIndex].text);
+    ratings.push(el.options[el.selectedIndex].text);
+    d3.event.preventDefault();
   })
 });
