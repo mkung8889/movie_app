@@ -18,12 +18,17 @@ button.on( "click", function(){
   </div> */}
 
 var submitButton = d3.select("#btn");
-var ratings = []
 
 submitButton.on("click", function(){
+  var ratings = [];
   var elems = document.querySelectorAll("#exampleFormControlSelect1");
   elems.forEach(function(el){
     ratings.push(el.options[el.selectedIndex].text);
     d3.event.preventDefault();
   })
 });
+
+$.ajax({
+  url: Flask.url_for('user_data')
+  
+})
