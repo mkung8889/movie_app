@@ -26,9 +26,14 @@ submitButton.on("click", function(){
     ratings.push(el.options[el.selectedIndex].text);
     d3.event.preventDefault();
   })
+  return ratings
 });
 
 $.ajax({
-  url: Flask.url_for('user_data')
-  
+  url: Flask.url_for('recommender'),
+  type: "POST", 
+  data: ratings
+})
+.done(function(result){
+  console.log(result)
 })

@@ -4,9 +4,17 @@ from flask import (
     jsonify,
     request,
     redirect)
+
 from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
 from flask_jsglue import JSGlue
+
 from random import *
+
 import pandas as pd
 import moviestorate as mtr
 import deep_learning_prediction as dlp
@@ -18,7 +26,7 @@ import deep_learning_prediction as dlp
 app = Flask(__name__)
 jsglue = JSGlue(app)
 
-app.config['SQL_ALCHEMY_DATABASE_URI'] = "sqlite://data/2018Movies.sqlite"
+app.config['SQL_ALCHEMY_DATABASE_URI'] = "sqlite:///../data/2018Movies.sqlite"
 db = SQLAlchemy(app)
 
 Base = automap_base()
@@ -78,7 +86,6 @@ def popular_movies():
 
 @app.route("/user/<user_id>")
 def recommender(user_id):
-    # 
 
     # Should use deep_learning_prediction.py to 
     # predict movies based on ratings given after 

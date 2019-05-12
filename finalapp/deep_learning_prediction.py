@@ -29,7 +29,7 @@ from keras.models import load_model
 # encoding='latin-1')
 
 # k_factors = 100
-trained_model = load_model('movie_recommender_100k_trained.h5')
+trained_model = load_model('../deep_learning2.0/movie_recommender_100k_trained.h5')
 def predict_rating(userId, movieId):
     return trained_model.predict([np.array([userId - 1]), np.array([movieId - 1])])[0][0]
 
