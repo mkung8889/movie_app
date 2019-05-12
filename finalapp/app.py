@@ -26,7 +26,7 @@ import deep_learning_prediction as dlp
 app = Flask(__name__)
 jsglue = JSGlue(app)
 
-app.config['SQL_ALCHEMY_DATABASE_URI'] = "sqlite:///../data/2018Movies.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/2018Movies.sqlite"
 db = SQLAlchemy(app)
 
 Base = automap_base()
