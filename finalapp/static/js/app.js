@@ -16,3 +16,24 @@ button.on( "click", function(){
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
   </div> */}
+
+var submitButton = d3.select("#btn");
+
+submitButton.on("click", function(){
+  var ratings = [];
+  var elems = document.querySelectorAll("#exampleFormControlSelect1");
+  elems.forEach(function(el){
+    ratings.push(el.options[el.selectedIndex].text);
+    d3.event.preventDefault();
+  })
+  return ratings
+});
+
+$.ajax({
+  url: Flask.url_for('recommender'),
+  type: "POST", 
+  data: ratings
+})
+.done(function(result){
+  console.log(result)
+})

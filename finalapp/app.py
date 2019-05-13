@@ -4,16 +4,38 @@ from flask import (
     jsonify,
     request,
     redirect)
+
+from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+from sqlalchemy import func
+
+from flask_jsglue import JSGlue
+
 from random import *
+
 import pandas as pd
 import moviestorate as mtr
+import deep_learning_prediction as dlp
 
 # u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code', '#_ratings', 'RMSE']
 # users = pd.read_csv('matrix_factorization/user_data.csv').drop("Unnamed: 0",axis=1)
 # print(list(users["user_id"].values))
 
 app = Flask(__name__)
+jsglue = JSGlue(app)
 
+app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/2018Movies.sqlite'
+db = SQLAlchemy(app)
+
+Base = automap_base()
+
+
+Base.prepare(db.engine, reflect=True)
+Ratings_Data = Base.classes.movie_ratings
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -62,14 +84,16 @@ def home():
 def popular_movies():
     movies = mtr.moviestorate()
 
-    return jsonify(pop)
+    return jsonify(movies)
 
-# @app.route("/user/<user_id>")
-# def user_data(user_id):
-#     user_dict = mp.user_data(user_id)
+@app.route("/user/<user_id>")
+def recommender(user_id):
 
-#     return jsonify(user_dict)
+    # Should use deep_learning_prediction.py to 
+    # predict movies based on ratings given after 
+    # submit button. 
 
+    return jsonify(user_dict)
 
 
 if __name__ == "__main__":
