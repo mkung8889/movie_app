@@ -10,6 +10,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
+from sqlalchemy import func
 
 from flask_jsglue import JSGlue
 
@@ -26,13 +27,14 @@ import deep_learning_prediction as dlp
 app = Flask(__name__)
 jsglue = JSGlue(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db/2018Movies.sqlite"
+app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/2018Movies.sqlite'
 db = SQLAlchemy(app)
 
 Base = automap_base()
 
-Base.prepare(db.engine, reflect=True)
 
+Base.prepare(db.engine, reflect=True)
 Ratings_Data = Base.classes.movie_ratings
 
 @app.route("/", methods=["GET", "POST"])
