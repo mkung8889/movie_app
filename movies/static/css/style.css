@@ -1,47 +1,70 @@
-/* .carousel-inner > .item >img{
-    min-height : 300px;
-    max-height : 300px;
-    width : 100%;
-  } */
-
-/* #carousel {
-    height:100px;
-} */
-
 img {
   height: auto;
 }
+body {
+  background: white;
+  /* background: #cccccc; */
+}
 
+/*** classes ***/
 .block{
-  background-color: white;
+  /* background-color: #white; */
+  background-color: #cccccc;
   padding: 25px;
   margin: 20px;
 }
 .block1{
-  background-color: black;
+  /* background-color: black; */
   padding: 25px;
   margin: 20px;
 }
-
 .carousel-caption {
   background-color: black;
   opacity: .75;
 }
-
 .center {
   margin-left: auto;
   margin-right: auto;
 }
+.jumbotron {
+  height: 300px;
+  margin-top: 50px;
+  /* padding-bottom: 50px; */
+}
+.btn-primary {
+  background: #f9bc50;
+  color: black;
+}
 
+
+/*** id ***/
 #header {
-  color: white;
+  color: #8c52ff;
+  text-align: center;
+  font-weight: bold;
 }
-
 #main_body {
-  background-color: grey;
+  /* background-color: #cccccc; */
+  /* background-color: #f9bc50; */
 }
-
 #app_title {
   font-size: 500%;
 }
-
+#userInfo b{
+  color: #8c52ff;
+}
+/* #jumbotron_items {
+  margin-bottom: 50px;
+} */
+#jumbotron {
+  padding-bottom: 50px;
+}
+#logo_container {
+  
+}
+#description {
+  margin-top: 50px;
+}
+#movies {
+  background-color: #cccccc;
+}
