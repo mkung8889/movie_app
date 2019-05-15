@@ -4,3 +4,4 @@ movies/config.py
 **/__pycache__
 data/ml-20m
 data/ml-100k
+data/ml-latest-small
