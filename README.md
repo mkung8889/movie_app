@@ -10,10 +10,8 @@ https://grouplens.org/datasets/movielens/
 
 ### App Versions:
 
-Version 2: Used the 2018 100k data set due to it being the most up to date and being a smaller size for use with students. 
+Version 2: We updated to the 2018 100k dataset. 
 https://grouplens.org/datasets/movielens/latest/
-
-* The app was revised to show 20 of the most popular movies in this dataset for the user to rate. Based on the user input, their top 5 movie recommendations are shown.
 
 Version 1: Used the 1998 100k data set (for most models) due to additional user data, pre feature engineered one hot encoding of the movie genres as well as the smaller sizing for use with students. 
 https://grouplens.org/datasets/movielens/100k/
