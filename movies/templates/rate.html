@@ -7,13 +7,14 @@
     <title>Rate Movies</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container"></div>
 
     <div class="container" id="movies">
         <div id="table-area">
-            <h1>table title</h1>
+            <h1>Movies List</h1>
 
             <select name="" id="sort" onchange="sortMovies()">
                 <option value="sort">sort by</option>
@@ -21,10 +22,8 @@
                 <option value="za">Z-A</option>
                 <option value="yearASC">Year (asc.)</option>
                 <option value="yearDESC">Year (desc.)</option>
-                <option disabled="disabled">-------</option>
-                <option value="genre">Genre:</option>
-                <option value="comedy">Comedy</option>
-                <option value=""></option>
+                <option disabled>-------</option>
+                <option value="genre" disabled>Genre:</option>
             </select>
 
             <table class="table table-striped" id="movie-list">
@@ -50,9 +49,10 @@
 <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/movies.js') }}"></script> -->
 <!-- <script type="text/javascript" src="../static/js/movies.js"></script> -->
 <script>var movies = {{ movies_list|tojson }};</script>
+<script>var genres = {{ genres_list|tojson }};</script>
 
-<!-- <script src="{{ url_for('static', filename='js/filter.js') }}"></script>  -->
-<script src="../static/js/filter.js"></script>
+<script src="{{ url_for('static', filename='js/filter.js') }}"></script> 
+<!-- <script src="../static/js/filter.js"></script> -->
 
 </body>
 </html>

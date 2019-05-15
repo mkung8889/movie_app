@@ -30,6 +30,12 @@ function moviesTable(movies_list){
 }
 moviesTable(movies)
 
+var sortOption = d3.select("#sort");
+for (var i=0; i<genres.length; i++) {
+    // console.log(genres[i]);
+    sortOption.append("option").attr("value", genres[i]).text(genres[i]);
+}
+
 
 function compareAZ( a, b ) {
     if ( a.movie_title < b.movie_title ){
@@ -49,15 +55,6 @@ function compareZA( a, b ) {
     }
     return 0;
 }
-// function yearASC( a, b ) {
-//     if ( a.movie_title.slice(-5,-1) > b.movie_title.slice(-5,-1) ){
-//         return -1;
-//     }
-//     if ( a.movie_title.slice(-5,-1) < b.movie_title.slice(-5,-1) ){
-//         return 1;
-//     }
-//     return 0;
-// }
 function yearASC( a, b ) {
     if ( a.movie_title.split("(").slice(-1,) < b.movie_title.split("(").slice(-1,) ){
         return -1;
@@ -88,49 +85,42 @@ function compareGenre( a,b ) {
 
 function sortMovies() {
     var sort = d3.select("#sort").property("value");
-    // console.log(sort);
+
     if (sort == "az") {
-        tbody.html("")
         var sortedMovies = movies.sort(compareAZ)
         console.log(sortedMovies)
-        moviesTable(sortedMovies)
         console.log("sorted movies a->z")
     }
-
     else if (sort == "za") {
-        tbody.html("")
         var sortedMovies = movies.sort(compareZA)
         console.log(sortedMovies)
-        moviesTable(sortedMovies)
         console.log("sorted movies z->a")
     }
     else if (sort == "yearASC") {
-        tbody.html("")
         var sortedMovies = movies.sort(yearASC)
         console.log(sortedMovies)
-        moviesTable(sortedMovies)
         console.log("sorted movies year asc.")
     }
     else if (sort == "yearDESC") {
-        tbody.html("")
         var sortedMovies = movies.sort(yearDESC)
         console.log(sortedMovies)
-        moviesTable(sortedMovies)
         console.log("sorted movies year desc.")
     }
     else if (sort == "genre") {
-        tbody.html("")
         var sortedMovies = movies.sort(compareGenre)
         console.log(sortedMovies)
-        moviesTable(sortedMovies)
         console.log("sorted movies genre")
     }
 
-    else if (sort == "comedy") {
-        
+    else if (genres.includes(sort)) {
+        function filterGenre(data) {
+            return data.genre.split("|").includes(sort)
+        }
+        console.log(sort)
+        var sortedMovies = movies.filter(filterGenre)
+        console.log(sortedMovies)
     }
 
-    else {
-
-    }
+    tbody.html("")
+    moviesTable(sortedMovies)
 }
