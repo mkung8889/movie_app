@@ -4,5 +4,3 @@ movies/config.py
 **/__pycache__
 data/ml-20m
 data/ml-100k
-deep_learning2.0/movie_recommender_100k_trained.h5
-deep_learning2.0/weights.h5
