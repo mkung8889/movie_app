@@ -8,15 +8,10 @@ https://movie-suggestion-app.herokuapp.com/
 grouplens MovieLens data sets
 https://grouplens.org/datasets/movielens/
 
-### App Versions:
-
-Version 2: We updated to the 2018 100k dataset. 
-https://grouplens.org/datasets/movielens/latest/
-
-Version 1: Used the 1998 100k data set (for most models) due to additional user data, pre feature engineered one hot encoding of the movie genres as well as the smaller sizing for use with students. 
+Used the 1998 100k data set (for most models) due to additional user data, pre feature engineered one hot encoding of the movie genres as well as the smaller sizing for use with students. 
 https://grouplens.org/datasets/movielens/100k/
 
-* The app displayed the top 5 movie receommendations based on userid. Each team member rating at least 20 movies and appended the data with their ratings to be included in training and predictions of the top 5 recommendations. 
+* The app displays the top 5 movie receommendations based on userid. Each team member rating at least 20 movies and appended the data with their ratings to be included in training and predictions of the top 5 recommendations. 
 
 * Used the 20M 2018 data set for the deep learning model.
 https://grouplens.org/datasets/movielens/20m/
