@@ -35,6 +35,40 @@ def home():
         else:
             return render_template("error.html")
 
+@app.route("/rate")
+def rate_movies():
+    movies = pd.read_csv("data/ml-20m/movies.csv")
+    movie_list = []
+    genres =[]
+    for i,movie in enumerate(movies.values):
+        movie_data = {
+            "movie_id": movie[0],
+            "movie_title": movie[1],
+            "genre": movie[2],
+        }
+        movie_genre = movie[2].split("|")
+        for genre in movie_genre:
+            if genre not in genres:
+                genres.append(genre)
+        movie_list.append(movie_data)
+    print(genres)
+
+    return render_template("rate.html", movies_list = movie_list, genres_list = genres)
+
+@app.route("/new_movies")
+def new_movies():
+    movies = pd.read_csv("data/ml-20m/movies.csv")
+    movie_list = []
+    for i,movie in enumerate(movies.values):
+        movie_data = {
+            "movie_id": movie[0],
+            "movie_title": movie[1],
+            "genre": movie[2],
+        }
+        movie_list.append(movie_data)
+     
+    return jsonify(movie_list)
+
 @app.route("/movies")
 def movies():
     i_cols = ['movie id', 'movie title' ,'release date','video release date', 'IMDb URL', 'unknown', 'Action', 'Adventure',

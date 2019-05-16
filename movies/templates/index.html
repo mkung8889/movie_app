@@ -11,11 +11,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <div class="jumbotron">
-          <h1 id="app_title">Cinematrix</h1> 
-          <h5>Find your new favorite movie!</h5>
-          <p>We use Matrix Factorization to give you movie suggestions based on the movies you have rated.</p> 
+    <div class="container" id="logo_container">
+        <!-- <div class="jumbotron" id="jumbotron">
+            <div id="jumbotron_items">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+            <h1 id="app_title">Cinematrix</h1> 
+            <h5>Find your new favorite movie!</h5>
+            <p>We use Matrix Factorization to give you movie suggestions based on the movies you have rated.</p> 
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-5">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+            </div>
+            <div class="col-md-5" id="description">
+                <h5>Find your new favorite movie!</h5>
+                <p>We use Matrix Factorization to give you movie suggestions based on the movies you have rated.</p>
+            </div>
         </div>
     </div>
     <div class="container" id="error">
@@ -37,13 +49,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12 block">
-                    <p><b>User ID:</b> {{ user_data.user_id }}</p>
-                    <p><b>Age:</b> {{ user_data.age }}</p>
-                    <p><b>Sex:</b> {{ user_data.sex }}</p>
-                    <p><b>Occupation:</b> {{user_data.occupation }}</p>
-                    <p><b>Zipcode:</b> {{ user_data.zipcode }}</p>
-                    <p><b># of Movies Rated:</b> {{ user_data.num_movies_rated }}</p>
-                    <p><b>RMSE:</b> {{ user_data.RMSE }}</p>
+                    <p id="userInfo"><b>User ID:</b> {{ user_data.user_id }}</p>
+                    <p id="userInfo"><b>Age:</b> {{ user_data.age }}</p>
+                    <p id="userInfo"><b>Sex:</b> {{ user_data.sex }}</p>
+                    <p id="userInfo"><b>Occupation:</b> {{user_data.occupation }}</p>
+                    <p id="userInfo"><b>Zipcode:</b> {{ user_data.zipcode }}</p>
+                    <p id="userInfo"><b># of Movies Rated:</b> {{ user_data.num_movies_rated }}</p>
+                    <p id="userInfo"><b>RMSE:</b> {{ user_data.RMSE }}</p>
                 </div>
             </div>
         </div> 
